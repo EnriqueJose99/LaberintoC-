@@ -4,20 +4,16 @@ using namespace std;
 
 //provisionar la matriz de chars para el laberinto
 char** provisionarMatriz(int);
-
 //liberar memoria de la matriz
 void liberar(char**&,int);
-
 //imprimir la matriz
 void imprimir(char**,int );
-
 //salir del laberinto: lab,size,x,y (columna,fila)
 bool salir(char**,int,int,int);
 
 int main(){
 	//abrir el archivo
 	ifstream file("laberinto.txt");
-
 	int size=0;
 	char** labMatrix=NULL;
 	//si el archivo existe
@@ -26,7 +22,7 @@ int main(){
 		file>>size;
 
 		//inicializar matriz nxn
-		labMatrix=provisionarMatriz(size);	
+		labMatrix=provisionarMatriz(size);
 		//leer la matriz del archivo
 		for(int i=0;i<size;i++){
 			for(int j=0;j<size;j++){
@@ -37,12 +33,12 @@ int main(){
 
 		//imprimir laberinto
 		imprimir(labMatrix,size);
-		
+
 		//salir del laberinto
 		salir(labMatrix,size,1,0);
 		imprimir(labMatrix,size);
 		cout<<endl;
-		
+
 		//liberar matriz
 		liberar(labMatrix,size);
 	}
@@ -84,7 +80,6 @@ void imprimir(char** matriz,int size){
 bool salir(char** matriz,int size,int x,int y){
 	bool salio=false;
 	if(x>=0 && x<size&& y>=0 && y<size){
-	
 		if(/*y== size-1*/matriz[x][y]=='@'){
 			matriz[x][y]='@';
 			return true;
@@ -111,7 +106,7 @@ bool salir(char** matriz,int size,int x,int y){
 			//izquierda
 			if(y>0 && !salio){
 				if(matriz[x][y-1]=='.'||matriz[x][y-1]=='@'){
-					salio=salir(matriz,size,x,y-1);	
+					salio=salir(matriz,size,x,y-1);
 				}
 			}
 			//marca la salida
@@ -120,9 +115,8 @@ bool salir(char** matriz,int size,int x,int y){
 			}
 			return salio;
 		}
-		
+
 	}else{
 		return false;
 	}
 }
-	
